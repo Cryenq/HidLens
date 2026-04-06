@@ -20,6 +20,7 @@
 		EB7567BD7DBE0B386AFCB289 /* SetupGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1BA7697F3AC98D2D93021 /* SetupGuideView.swift */; };
 		AA1122334455667788990011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1122334455667788990022 /* SettingsView.swift */; };
 		AA1122334455667788990033 /* MeasurementResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1122334455667788990044 /* MeasurementResultsView.swift */; };
+		BB1122334455667788990011 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = BB1122334455667788990022 /* AppIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		AA1122334455667788990022 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA1122334455667788990044 /* MeasurementResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultsView.swift; sourceTree = "<group>"; };
 		FD7817BE9A8D234D9890BDC8 /* HidLensShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HidLensShared.h; sourceTree = "<group>"; };
+		BB1122334455667788990022 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,17 @@
 		};
 /* End PBXFrameworksBuildPhase section */
 
+/* Begin PBXResourcesBuildPhase section */
+		CC1122334455667788990011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB1122334455667788990011 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXGroup section */
 		1EFF5D330FE0534B5B3904C8 /* Sources */ = {
 			isa = PBXGroup;
@@ -67,6 +80,7 @@
 		276C0F48E6CD08DBDC9CAADF /* HidLensApp */ = {
 			isa = PBXGroup;
 			children = (
+				BB1122334455667788990022 /* AppIcon.icns */,
 				28065DB65329201F44D82418 /* HidLensAppMain.swift */,
 				98888019922188FB06301759 /* Entitlements */,
 				DE7853B8133DC428F32431BF /* ViewModels */,
@@ -154,6 +168,7 @@
 			buildPhases = (
 				7E7458FD6CAAA936DF4C25B1 /* Sources */,
 				827D4D786280F93A59B9B730 /* Frameworks */,
+				CC1122334455667788990011 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -307,7 +322,7 @@
 		58667F818F1A33334932FCB7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "arm64e x86_64";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "-";
@@ -415,7 +430,7 @@
 		9CB4F880F48C47762FD697ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "arm64e x86_64";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "-";
@@ -466,6 +481,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sources/HidLensApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = HidLens;
 				INFOPLIST_KEY_CFBundleIconFile = AppIcon;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "MIT License";
@@ -488,6 +504,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sources/HidLensApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = HidLens;
 				INFOPLIST_KEY_CFBundleIconFile = AppIcon;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "MIT License";

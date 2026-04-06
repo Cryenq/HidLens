@@ -82,12 +82,13 @@ public enum KextInstaller {
         let commands = [
             "kmutil unload -b \(bundleID) 2>/dev/null || true",
             "rm -rf /private/var/db/KernelExtensionManagement/Staging/\(bundleID).* 2>/dev/null || true",
+            "rm -rf /Library/Extensions/HidLensDriver.kext 2>/dev/null || true",
             "rm -rf \(kextDstPath)",
             "cp -R '\(stagingPath)' \(kextDstPath)",
             "chown -R root:wheel \(kextDstPath)",
             "chmod -R 755 \(kextDstPath)",
-            "codesign --force --sign - --deep \(kextDstPath)",
-            "kmutil load -p \(kextDstPath)"
+            "codesign --force --sign - --deep \(kextDstPath) 2>/dev/null",
+            "kmutil load -p \(kextDstPath) 2>&1"
         ]
 
         let shellCommand = commands.joined(separator: " && ")
@@ -133,6 +134,8 @@ public enum KextInstaller {
             } else {
                 if errorOutput.contains("User canceled") || errorOutput.contains("-128") {
                     completion(.failure(KextInstallerError.userCancelled))
+                } else if errorOutput.contains("not approved to load") || errorOutput.contains("Please approve using System Settings") {
+                    completion(.failure(KextInstallerError.needsApproval))
                 } else {
                     let msg = errorOutput.isEmpty ? output : errorOutput
                     completion(.failure(KextInstallerError.installFailed(msg)))
@@ -169,6 +172,7 @@ public enum KextInstallerError: Error, LocalizedError, Equatable {
     case kextNotFound
     case installFailed(String)
     case userCancelled
+    case needsApproval
 
     public var errorDescription: String? {
         switch self {
@@ -178,6 +182,8 @@ public enum KextInstallerError: Error, LocalizedError, Equatable {
             return "KEXT installation failed: \(msg)"
         case .userCancelled:
             return "Installation cancelled by user"
+        case .needsApproval:
+            return "KEXT needs approval"
         }
     }
 }

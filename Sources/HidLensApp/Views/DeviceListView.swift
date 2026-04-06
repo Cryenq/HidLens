@@ -47,6 +47,24 @@ struct DeviceListView: View {
         .sheet(isPresented: $showSetupGuide) {
             SetupGuideView()
         }
+        .alert("KEXT Error", isPresented: showErrorAlert, actions: {
+            Button("Copy to Clipboard") {
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(viewModel.kextError ?? "", forType: .string)
+            }
+            Button("OK", role: .cancel) {
+                viewModel.kextError = nil
+            }
+        }, message: {
+            Text(viewModel.kextError ?? "")
+        })
+    }
+
+    private var showErrorAlert: Binding<Bool> {
+        Binding(
+            get: { viewModel.kextError != nil },
+            set: { if !$0 { viewModel.kextError = nil } }
+        )
     }
 
     // MARK: - Permission Banner
@@ -79,7 +97,30 @@ struct DeviceListView: View {
 
     private var statusBar: some View {
         VStack(spacing: 4) {
-            if let msg = viewModel.kextMessage {
+            if viewModel.kextNeedsApproval {
+                VStack(spacing: 4) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.orange)
+                            .font(.caption)
+                        Text("KEXT needs approval")
+                            .font(.caption.bold())
+                    }
+                    Text("Open System Settings → Privacy & Security, approve the extension, then restart your Mac.")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                    HStack(spacing: 8) {
+                        Button("Open Settings") {
+                            PermissionChecker.openPrivacySecuritySettings()
+                        }
+                        .font(.caption)
+                        .controlSize(.mini)
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
+                .padding(4)
+            } else if let msg = viewModel.kextMessage {
                 Text(msg)
                     .font(.caption2)
                     .foregroundStyle(.secondary)

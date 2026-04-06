@@ -9,6 +9,8 @@ final class DeviceListViewModel: ObservableObject {
     @Published var kextLoaded = false
     @Published var kextInstalling = false
     @Published var kextMessage: String?
+    @Published var kextError: String?
+    @Published var kextNeedsApproval = false
     @Published var hidAccessGranted = true
     @Published var csrStatus: PermissionChecker.CSRStatus?
     @AppStorage("showAllDevices") var showAllDevices = false
@@ -72,6 +74,7 @@ final class DeviceListViewModel: ObservableObject {
     func installKext() {
         kextInstalling = true
         kextMessage = nil
+        kextError = nil
 
         KextInstaller.installKext { [weak self] result in
             DispatchQueue.main.async {
@@ -85,8 +88,12 @@ final class DeviceListViewModel: ObservableObject {
                 case .failure(let error):
                     if (error as? KextInstallerError) == .userCancelled {
                         self.kextMessage = nil
+                    } else if (error as? KextInstallerError) == .needsApproval {
+                        self.kextNeedsApproval = true
+                        self.kextMessage = "Approve in System Settings, then restart"
                     } else {
-                        self.kextMessage = error.localizedDescription
+                        self.kextMessage = "Installation failed"
+                        self.kextError = error.localizedDescription
                     }
                 }
             }
@@ -96,6 +103,7 @@ final class DeviceListViewModel: ObservableObject {
     func unloadKext() {
         kextInstalling = true
         kextMessage = nil
+        kextError = nil
 
         KextInstaller.unloadKext { [weak self] result in
             DispatchQueue.main.async {
@@ -109,7 +117,8 @@ final class DeviceListViewModel: ObservableObject {
                     if (error as? KextInstallerError) == .userCancelled {
                         self.kextMessage = nil
                     } else {
-                        self.kextMessage = error.localizedDescription
+                        self.kextMessage = "Unload failed"
+                        self.kextError = error.localizedDescription
                     }
                 }
             }
