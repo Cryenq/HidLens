@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>HidLensDriver</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.hidlens.driver</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>HidLensDriver</string>
+    <key>CFBundlePackageType</key>
+    <string>KEXT</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.2</string>
+    <key>CFBundleVersion</key>
+    <string>16</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright (c) 2026. MIT License.</string>
+
+    <!-- KEXT properties -->
+    <key>OSBundleLibraries</key>
+    <dict>
+        <key>com.apple.kpi.iokit</key>
+        <string>21.0</string>
+        <key>com.apple.kpi.libkern</key>
+        <string>21.0</string>
+        <key>com.apple.iokit.IOUSBHostFamily</key>
+        <string>1.2</string>
+    </dict>
+
+    <key>IOKitPersonalities</key>
+    <dict>
+        <!-- DualShock 4 v1 (CUH-ZCT1) -->
+        <key>DualShock4v1</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>com.hidlens.driver</string>
+            <key>IOClass</key>
+            <string>HidLensDriver</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostDevice</string>
+            <key>idVendor</key>
+            <integer>1356</integer>
+            <key>idProduct</key>
+            <integer>1476</integer>
+            <key>IOProbeScore</key>
+            <integer>90000</integer>
+            <key>IOMatchCategory</key>
+            <string>com.hidlens.driver</string>
+        </dict>
+
+        <!-- DualShock 4 v2 (CUH-ZCT2) -->
+        <key>DualShock4v2</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>com.hidlens.driver</string>
+            <key>IOClass</key>
+            <string>HidLensDriver</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostDevice</string>
+            <key>idVendor</key>
+            <integer>1356</integer>
+            <key>idProduct</key>
+            <integer>2508</integer>
+            <key>IOProbeScore</key>
+            <integer>90000</integer>
+            <key>IOMatchCategory</key>
+            <string>com.hidlens.driver</string>
+        </dict>
+
+        <!-- DualSense (PS5) -->
+        <key>DualSense</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>com.hidlens.driver</string>
+            <key>IOClass</key>
+            <string>HidLensDriver</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostDevice</string>
+            <key>idVendor</key>
+            <integer>1356</integer>
+            <key>idProduct</key>
+            <integer>3302</integer>
+            <key>IOProbeScore</key>
+            <integer>90000</integer>
+            <key>IOMatchCategory</key>
+            <string>com.hidlens.driver</string>
+        </dict>
+
+        <!-- DualSense Edge -->
+        <key>DualSenseEdge</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>com.hidlens.driver</string>
+            <key>IOClass</key>
+            <string>HidLensDriver</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostDevice</string>
+            <key>idVendor</key>
+            <integer>1356</integer>
+            <key>idProduct</key>
+            <integer>3570</integer>
+            <key>IOProbeScore</key>
+            <integer>90000</integer>
+            <key>IOMatchCategory</key>
+            <string>com.hidlens.driver</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

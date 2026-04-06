@@ -1,0 +1,35 @@
+# Xcode
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.moved-aside
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# KEXT build artifacts
+*.kext/
+*.dSYM/
+
+# IDE
+.vscode/
+.idea/
+
+# Local
+icon_original.png
+icon_srgb.png
+AppIcon.iconset/
+Scripts/generate-icon.swift
