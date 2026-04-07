@@ -46,6 +46,16 @@ HidLens uses a kernel extension that modifies the `bInterval` field in USB endpo
 
 ## Installation
 
+### From DMG
+
+1. Download `hidlens.dmg` from [Releases](https://github.com/Cryenq/HidLens/releases)
+2. Open the DMG and drag **HidLens.app** into **Applications**
+3. Before first launch, remove the quarantine flag:
+   ```bash
+   xattr -cr /Applications/HidLens.app
+   ```
+   Alternatively: right-click the app → **Open** → click **Open** in the dialog (one-time).
+
 ### Build from source
 
 ```bash
